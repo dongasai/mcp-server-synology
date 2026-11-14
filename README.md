@@ -1,5 +1,7 @@
 # mcp-server-synology
 
+English | [简体中文](./README.zh-CN.md)
+
 An MCP server that exposes a Synology NAS through the official DSM WebAPI.
 
 It covers File Station, Download Station, Synology Photos, Container Manager
