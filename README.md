@@ -151,6 +151,24 @@ verification for the whole process.
 
 ## Running
 
+### Published image (GHCR)
+
+Every push to `main`/`master` builds a multi-arch image and publishes it to the
+GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/dongasai/mcp-server-synology:latest
+docker run -d --name synology-mcp \
+  --env-file .env \
+  -e SYNOLOGY_MCP_TRANSPORT=http -e HOST=0.0.0.0 -e PORT=3000 \
+  -p 127.0.0.1:3020:3000 \
+  ghcr.io/dongasai/mcp-server-synology:latest
+```
+
+Tag scheme: `latest` (default branch), `<branch>`, `sha-<commit>`, and semver
+tags when you push a `v*` tag. Pull requests build the image without pushing it.
+The image is public, so no `docker login` is needed to pull.
+
 ### Docker Compose
 
 ```bash

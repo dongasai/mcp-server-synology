@@ -3,10 +3,9 @@ FROM node:22-alpine AS build
 
 WORKDIR /app
 
-# Install with the lockfile-independent path so the image builds from a clean
-# checkout, then compile TypeScript to dist/.
-COPY package.json ./
-RUN npm install --no-audit --no-fund
+# Install from the committed lockfile so the image content matches CI exactly.
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
 
 COPY tsconfig.json ./
 COPY src ./src
